@@ -5,7 +5,7 @@ const path = require("path");
 
 const app = express();
 console.log("Loaded server file:", __filename);
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 // Middleware
 app.use(express.json());
