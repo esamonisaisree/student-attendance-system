@@ -1,0 +1,29 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-attendance
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: student-attendance
+  template:
+    metadata:
+      labels:
+        app: student-attendance
+    spec:
+      containers:
+        - name: student-attendance
+          image: student-attendance-system:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: attendance-database
+              mountPath: /app/attendance.db
+      volumes:
+        - name: attendance-database
+          hostPath:
+            path: /run/desktop/mnt/host/c/Users/Esamoni sai sree/student-attendance-system/attendance.db
+            type: File
